@@ -2,7 +2,7 @@ name: useful_widgets
 description: Useful widgets to make creating apps easier. Some example widgets are FutureWidget, SearchWidget.
 version: 1.0.0
 author: Ricardo Crescenti
-homepage:
+homepage: https://github.com/ricardocrescenti/flutter-useful-widgets
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -14,6 +14,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  pedantic: ^1.8.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

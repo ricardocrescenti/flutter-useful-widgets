@@ -5,10 +5,10 @@ import 'package:useful_widgets/useful_widgets.dart';
 import 'active_page_enum.dart';
 
 abstract class SearchWidget<T> extends StatefulWidget {
-  final hintText;
+  final String hintText;
 
   SearchWidget({
-    this.hintText = 'Pesquisar'
+    this.hintText = 'Pesquisar',
   });
 
   AppBar buildAppBar(BuildContext context, SearchWidgetState<T> searchWidget) {
@@ -59,7 +59,7 @@ abstract class SearchWidget<T> extends StatefulWidget {
 
 class SearchWidgetState<T> extends State<SearchWidget<T>> {
   Future _future;
-  ActivePage _activePage = ActivePage.Sugestion;
+  ActivePage _activePage = ActivePage.sugestion;
 
   TextEditingController textEditingController = TextEditingController();
 
@@ -74,14 +74,14 @@ class SearchWidgetState<T> extends State<SearchWidget<T>> {
   performSearch(String query) {
     if (widget.canSearch(context, query)) {
       setState(() {
-        this._activePage = ActivePage.Result;
+        this._activePage = ActivePage.result;
         this._future = widget.search(query);
       });
     }
   }
 
   _buildBody() {
-    if (_activePage == ActivePage.Result) {
+    if (_activePage == ActivePage.result) {
       return FutureWidget<T>(
         future: (context) => this._future,
         builder: (context, result) {
