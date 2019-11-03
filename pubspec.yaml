@@ -1,6 +1,6 @@
 name: useful_widgets
-description: A new Flutter package project.
-version: 0.0.1
+description: Useful widgets to make creating apps easier. Some example widgets are FutureWidget, SearchWidget.
+version: 1.0.0
 author: Ricardo Crescenti
 homepage:
 

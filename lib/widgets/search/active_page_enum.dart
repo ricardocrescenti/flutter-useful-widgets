@@ -1,0 +1,1 @@
+enum ActivePage { Sugestion, Result }
