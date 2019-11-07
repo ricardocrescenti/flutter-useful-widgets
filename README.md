@@ -25,6 +25,9 @@ FutureWidget<String>(
     builder: (context, result) => Text(result),
 );
 ```
+| Sucess   |     Error     |
+|----------|:-------------:|
+| <img src="https://raw.githubusercontent.com/ricardocrescenti/flutter-useful-widgets/master/example/images/future_widget_sucess.gif"  height = "400" alt="PieChart"> |  <img src="https://raw.githubusercontent.com/ricardocrescenti/flutter-useful-widgets/master/example/images/future_widget_error.gif"  height = "400" alt="PieChart"> |
 
 The 'Retry' button only is showed if `retry` parameter is informed.
 
@@ -44,6 +47,12 @@ RefreshWidget<List<String>>(
     ),
 );
 ```
+
+| Refresh   |
+|----------|
+| <img src="https://raw.githubusercontent.com/ricardocrescenti/flutter-useful-widgets/master/example/images/refresh_widget.gif"  height = "400" alt="PieChart"> |
+
+Example: [Weather Forecast](https://github.com/ricardocrescenti/flutter-weather-forecast)
 
 ## SearchWidget
 
@@ -95,3 +104,9 @@ class CitySearchWidget extends SearchWidget<List<CityModel>> {
     }
 }
 ```
+
+| Search   |
+|----------|
+| <img src="https://raw.githubusercontent.com/ricardocrescenti/flutter-useful-widgets/master/example/images/search_widget.gif"  height = "400" alt="PieChart"> |
+
+Example: [Weather Forecast](https://github.com/ricardocrescenti/flutter-weather-forecast)
