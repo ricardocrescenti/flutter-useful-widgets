@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class RefreshWidget extends StatefulWidget {
-  final Future Function() future;
-  final Widget Function(BuildContext) builder;
+  final Future Function(BuildContext context) future;
+  final Widget Function(BuildContext context) builder;
   
   RefreshWidget({
     @required this.future, 
@@ -19,13 +19,13 @@ class _RefreshWidget extends State<RefreshWidget> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       key: _refreshIndicatorKey,
-      onRefresh: _refresh,
+      onRefresh: () => _refresh(context),
       child: widget.builder(context),
     );
   }
 
-  Future<Null> _refresh() async {
-    await widget.future();
+  Future<Null> _refresh(BuildContext context) async {
+    await widget.future(context);
     setState(() {});
     return null;
   }

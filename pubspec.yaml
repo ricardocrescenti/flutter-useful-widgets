@@ -1,5 +1,5 @@
 name: useful_widgets
-description: Useful widgets to make creating apps easier. Some example widgets are FutureWidget, SearchWidget.
+description: Useful widgets to make creating apps easier. Some example widgets are FutureWidget, RefreshWidget, SearchWidget.
 version: 1.0.0
 author: Ricardo Crescenti
 homepage: https://github.com/ricardocrescenti/flutter-useful-widgets
