@@ -21,7 +21,7 @@ class ErrorWidget extends StatelessWidget {
       widgets.addAll([
         Padding(padding: EdgeInsets.all(10),),
         RaisedButton(
-          child: Text('Tentar Novamente'),
+          child: Text('Try Again'),
           onPressed: () => retry(context),
         )
       ]);

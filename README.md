@@ -1,14 +1,44 @@
 # useful_widgets
 
-A new Flutter package project.
+This package makes it easy to build apps by providing a list of simple and useful widgets.
 
-## Getting Started
+```dart
+import 'package:useful_widgets/useful_widgets.dart';
+```
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+List of Widgets available in this package
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+- FutureWidget
+- RefreshWidget
+- SearchWidget
+
+Below I will explain how each widget is used
+
+## FutureWidget
+
+Simple widget to show result widget when `Future` is done, this widget automatic show loading widget, and error widget.
+
+```dart
+Future<String> delayedFuture;
+
+Function() createDelayedFuture = () {
+    delayedFuture = Future.delayed(Duration(seconds: 5), () => 'FutureWidget');
+};
+
+createDelayedFuture();
+
+FutureWidget<String>(
+    future: (context) => delayedFuture,
+    retry: (context) => createDelayedFuture(),
+    builder: (context, result) => Text(result),
+)
+```
+
+The 'Retry' button only is showed if `retry` parameter is informed.
+
+## RefreshWidget
+
+
+
+## SearchWidget
+

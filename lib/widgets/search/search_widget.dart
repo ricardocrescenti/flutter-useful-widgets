@@ -8,7 +8,7 @@ abstract class SearchWidget<T> extends StatefulWidget {
   final String hintText;
 
   SearchWidget({
-    this.hintText = 'Pesquisar',
+    this.hintText = 'Search',
   });
 
   AppBar buildAppBar(BuildContext context, SearchWidgetState<T> searchWidget) {
