@@ -113,14 +113,16 @@ Example: [Weather Forecast](https://github.com/ricardocrescenti/flutter-weather-
 
 # Customize package locations
 
-First let's create the custom internationalization that will extend the default package location.
+First let's create the custom internationalization that will extend the default package location. You should override `customValues` and enter only the messages you want to change.
 
 ```dart
 import 'package:useful_widgets/useful_widgets.dart';
 
-class CustomLocalization extends ExampleLocalizations {
+class CustomLocalization extends UsefulWidgetsLocalizations {
+  CustomLocalization(Locale locale) : super(locale);
+  
   @override
-  Map<dynamic, Map<dynamic, String>> get localizedValues => {
+  Map<dynamic, Map<dynamic, String>> get customValues => {
     'en': {
       WidgetMessages.message1: 'Custom first message',
       WidgetMessages.message2: 'Custom second message',
@@ -137,21 +139,12 @@ class CustomLocalization extends ExampleLocalizations {
 }
 ```
 
-Now let's create the `BasicLocalizationsDelegate` class to define the custom class to be loaded by the application.
-
-```dart
-class CustomLocalizationsDelegate extends BasicLocalizationsDelegate<UsefulWidgetsLocalizations> {
-  @override
-  customLocalization(Locale locale) => CustomLocalization(locale);
-}
-```
-
 And finally, inform the delegate in `localizationsDelegates` of your apps `MaterialApp`.
 
 ```dart
 MaterialApp(
   localizationsDelegates: [
-    CustomLocalizationsDelegate(),
+    UsefulWidgetsLocalizationsDelegate((locale) => CustomLocalization(locale)),
   ],
 )
 ```

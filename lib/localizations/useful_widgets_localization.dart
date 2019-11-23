@@ -48,3 +48,7 @@ class UsefulWidgetsLocalizations extends SimpleLocalizations {
     Locale('pt'),
   ];
 }
+
+class UsefulWidgetsLocalizationsDelegate extends SimpleLocalizationsDelegate<UsefulWidgetsLocalizations> {
+  UsefulWidgetsLocalizationsDelegate(customLocalization) : super(customLocalization);
+}
