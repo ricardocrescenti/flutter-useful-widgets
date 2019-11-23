@@ -18,8 +18,8 @@ class FutureWidget<T> extends StatefulWidget {
     this.awaitWidget,
     this.errorWidget,
     this.retry,
-    this.awaitMessage = 'Loading',
-    this.errorMessage = 'Could not complete request',
+    this.awaitMessage,
+    this.errorMessage,
   });
 
   @override

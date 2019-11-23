@@ -1,7 +1,7 @@
-## 1.0.0+1
+## 1.1.0
 
-* Email added to pubspec.yaml
+* Internationalization added for English, Spanish and Portuguese.
 
-## 1.0.0 - 2019-01-03
+## 1.0.0
 
 * Added `FutureWidget`, `RefreshWidget`, `SearchWidget`

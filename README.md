@@ -110,3 +110,48 @@ class CitySearchWidget extends SearchWidget<List<CityModel>> {
 | <img src="https://raw.githubusercontent.com/ricardocrescenti/flutter-useful-widgets/master/example/images/search_widget.gif"  height = "400" alt="PieChart"> |
 
 Example: [Weather Forecast](https://github.com/ricardocrescenti/flutter-weather-forecast)
+
+# Customize package locations
+
+First let's create the custom internationalization that will extend the default package location.
+
+```dart
+import 'package:useful_widgets/useful_widgets.dart';
+
+class CustomLocalization extends ExampleLocalizations {
+  @override
+  Map<dynamic, Map<dynamic, String>> get localizedValues => {
+    'en': {
+      WidgetMessages.message1: 'Custom first message',
+      WidgetMessages.message2: 'Custom second message',
+    },
+    'es': {
+      WidgetMessages.message1: 'Primer mensaje personalizado',
+      WidgetMessages.message2: 'Segundo mensaje personalizado',
+    },
+    'pt': {
+      WidgetMessages.message1: 'Primeira mensagem personalizada',
+      WidgetMessages.message2: 'Segunda mensagem personalizada',
+    }
+  };
+}
+```
+
+Now let's create the `BasicLocalizationsDelegate` class to define the custom class to be loaded by the application.
+
+```
+class CustomLocalizationsDelegate extends BasicLocalizationsDelegate<UsefulWidgetsLocalizations> {
+  @override
+  customLocalization(Locale locale) => CustomLocalization(locale);
+}
+```
+
+And finally, inform the delegate in `localizationsDelegates` of your apps `MaterialApp`.
+
+```dart
+MaterialApp(
+  localizationsDelegates: [
+    CustomLocalizationsDelegate(),
+  ],
+)
+```

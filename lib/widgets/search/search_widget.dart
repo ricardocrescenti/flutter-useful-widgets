@@ -8,7 +8,7 @@ abstract class SearchWidget<T> extends StatefulWidget {
   final String hintText;
 
   SearchWidget({
-    this.hintText = 'Search',
+    this.hintText,
   });
 
   AppBar buildAppBar(BuildContext context, SearchWidgetState<T> searchWidget) {
@@ -21,7 +21,7 @@ abstract class SearchWidget<T> extends StatefulWidget {
         decoration: InputDecoration(
           border: InputBorder.none,
           filled: true,
-          hintText: hintText,
+          hintText: hintText ?? UsefulWidgetsLocalizations.of(context)[SearchWidgetMessages.searchHint],
           prefixIcon: IconButton(
             icon: Icon(Icons.chevron_left),
             onPressed: () => close(context),

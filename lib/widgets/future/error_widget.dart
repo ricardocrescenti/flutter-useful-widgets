@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:useful_widgets/useful_widgets.dart';
 
 /// Default error widget used by `FutureWidget`
 class ErrorWidget extends StatelessWidget {
@@ -11,17 +12,19 @@ class ErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UsefulWidgetsLocalizations localization = UsefulWidgetsLocalizations.of(context);
+
     List<Widget> widgets = [
       Icon(Icons.error, size: 70,),
       Padding(padding: EdgeInsets.all(5),),
-      Text(message, style: Theme.of(context).textTheme.body2,)
+      Text(message ?? localization[FutureWidgetMessages.errorMessage], style: Theme.of(context).textTheme.body2,)
     ];
 
     if (retry != null) {
       widgets.addAll([
         Padding(padding: EdgeInsets.all(10),),
         RaisedButton(
-          child: Text('Try Again'),
+          child: Text(localization[FutureWidgetMessages.retryButtonText]),
           onPressed: () => retry(context),
         )
       ]);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:useful_widgets/useful_widgets.dart';
 
 /// Default await widget used by `FutureWidget`
 class AwaitWidget extends StatelessWidget {
@@ -15,7 +16,7 @@ class AwaitWidget extends StatelessWidget {
         children: <Widget>[
           CircularProgressIndicator(),
           Padding(padding: EdgeInsets.all(10),),
-          Text(message)
+          Text(message ?? UsefulWidgetsLocalizations.of(context)[FutureWidgetMessages.awaitMessage])
         ],
       )
     );
