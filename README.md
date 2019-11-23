@@ -139,7 +139,7 @@ class CustomLocalization extends ExampleLocalizations {
 
 Now let's create the `BasicLocalizationsDelegate` class to define the custom class to be loaded by the application.
 
-```
+```dart
 class CustomLocalizationsDelegate extends BasicLocalizationsDelegate<UsefulWidgetsLocalizations> {
   @override
   customLocalization(Locale locale) => CustomLocalization(locale);
