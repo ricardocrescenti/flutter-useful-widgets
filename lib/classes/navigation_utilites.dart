@@ -24,32 +24,25 @@ class NavigationUtilities {
     );
   }
 
-  Future<T> showAwait<T>(BuildContext context, String message, Function function) async {
-    showDialog<void>(
+  Future<T> showAwait<T>(BuildContext context, String message, Future<T> Function() function) async {
+    return showDialog<T>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
+        function()
+          .then((onValue) => Navigator.of(context).pop(onValue))
+          .catchError((onError) => Navigator.of(context).pop(null));
+
         return WillPopScope(
           onWillPop: () => Future.value(false),
           child: AwaitDialogWidget(message == null ? 'Aguarde' : message),
         );
       },
     );
-
-    dynamic result;
-    try {
-      result = await function();
-    } catch (error) {
-      print(error);
-    }
-
-    Navigator.pop(context);
-
-    return result;
   }
 
-  Future<T> alertDialog<T>(BuildContext context, Widget title, Widget message) {
-    showDialog<void>(
+  Future alertDialog(BuildContext context, Widget title, Widget message) {
+    return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
@@ -61,12 +54,10 @@ class NavigationUtilities {
         );
       },
     );
-    
-    return null;
   }
   
-  Future<T> errorDialog<T>(BuildContext context, Widget title, Widget message) {
-    showDialog<void>(
+  errorDialog(BuildContext context, Widget title, Widget message) {
+    return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
@@ -78,8 +69,6 @@ class NavigationUtilities {
         );
       },
     );
-    
-    return null;
   }
 
   bool close(BuildContext context) {
