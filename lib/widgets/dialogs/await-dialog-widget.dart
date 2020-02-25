@@ -20,7 +20,7 @@ class AwaitDialogWidget extends StatelessWidget {
                 children: <Widget>[
                   CircularProgressIndicator(),
                   Padding(padding: EdgeInsets.all(10),),
-                  Text(message),
+                  Text(message, textAlign: TextAlign.center,),
                 ],
               ),
             ),
