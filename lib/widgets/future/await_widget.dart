@@ -15,8 +15,10 @@ class AwaitWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           CircularProgressIndicator(),
-          Padding(padding: EdgeInsets.all(10),),
-          Text(message ?? UsefulWidgetsLocalizations.of(context)[FutureWidgetMessages.awaitMessage])
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            child: Text(message ?? UsefulWidgetsLocalizations.of(context)[FutureWidgetMessages.awaitMessage])
+          )
         ],
       )
     );

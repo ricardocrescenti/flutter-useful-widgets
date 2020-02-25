@@ -16,8 +16,10 @@ class ErrorWidget extends StatelessWidget {
 
     List<Widget> widgets = [
       Icon(Icons.error, size: 70,),
-      Padding(padding: EdgeInsets.all(5),),
-      Text(message ?? localization[FutureWidgetMessages.errorMessage], style: Theme.of(context).textTheme.body2,)
+      Padding(
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        child: Text(message ?? localization[FutureWidgetMessages.errorMessage], textAlign: TextAlign.center, style: Theme.of(context).textTheme.body2,)
+      )
     ];
 
     if (retry != null) {
