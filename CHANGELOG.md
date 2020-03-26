@@ -1,3 +1,7 @@
+## 1.3.0
+
+* Added `BottomButton`, `LoginWidget`, `FacebookLoginButton`, `GitHubLoginButton`, `GoogleLoginButton`, `MicrosoftLoginButton`, `TwitterLoginButton`, `StepperWidget`, `TabButton`
+
 ## 1.2.0
 
 * Created 'UsefulWidgetsLocalizationsDelegate' class to allow package internationalization customization
