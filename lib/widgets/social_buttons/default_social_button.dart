@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DefaultSocialButtonLogin extends StatelessWidget{
+class DefaultSocialButton extends StatelessWidget{
   final bool rouded;
   final IconData icon;
   final Color buttonColor;
@@ -8,7 +8,7 @@ class DefaultSocialButtonLogin extends StatelessWidget{
   final String text;
   final Function(BuildContext context) onPressed;
 
-  DefaultSocialButtonLogin({
+  DefaultSocialButton({
     @required this.rouded,
     @required this.icon, 
     @required this.buttonColor, 

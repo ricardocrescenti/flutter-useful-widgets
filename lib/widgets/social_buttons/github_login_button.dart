@@ -15,7 +15,7 @@ class GitHubLoginButton extends StatelessWidget{
   
   @override
   Widget build(BuildContext context) {
-    return DefaultSocialButtonLogin(
+    return DefaultSocialButton(
       rouded: this.rouded,
       icon: FontAwesomeIcons.github,
       buttonColor: Color.fromRGBO(27, 30, 33, 1),

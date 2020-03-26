@@ -16,7 +16,7 @@ class FacebookLoginButton extends StatelessWidget{
   
   @override
   Widget build(BuildContext context) {
-    return DefaultSocialButtonLogin(
+    return DefaultSocialButton(
       rouded: this.rouded,
       icon: FontAwesomeIcons.facebookF,
       buttonColor: Color.fromRGBO(60, 102, 196, 1),

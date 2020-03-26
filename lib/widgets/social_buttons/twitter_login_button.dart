@@ -15,7 +15,7 @@ class TwitterLoginButton extends StatelessWidget{
   
   @override
   Widget build(BuildContext context) {
-    return DefaultSocialButtonLogin(
+    return DefaultSocialButton(
       rouded: this.rouded,
       icon: FontAwesomeIcons.twitter,
       buttonColor: Color.fromRGBO(27, 161, 242, 1),

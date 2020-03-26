@@ -15,7 +15,7 @@ class MicrosoftLoginButton extends StatelessWidget{
   
   @override
   Widget build(BuildContext context) {
-    return DefaultSocialButtonLogin(
+    return DefaultSocialButton(
       rouded: this.rouded,
       icon: FontAwesomeIcons.microsoft,
       buttonColor: Color.fromRGBO(0, 24, 142, 1),

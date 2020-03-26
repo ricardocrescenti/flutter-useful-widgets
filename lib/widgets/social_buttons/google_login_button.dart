@@ -15,7 +15,7 @@ class GoogleLoginButton extends StatelessWidget{
   
   @override
   Widget build(BuildContext context) {
-    return DefaultSocialButtonLogin(
+    return DefaultSocialButton(
       rouded: this.rouded,
       icon: FontAwesomeIcons.google,
       buttonColor: Color.fromRGBO(207, 67, 50, 1),
