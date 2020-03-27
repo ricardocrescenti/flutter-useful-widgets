@@ -35,7 +35,7 @@ class DefaultSocialButton extends StatelessWidget{
         ),
         onPressed: () => this.onPressed(context),
         shape: RoundedRectangleBorder(
-          borderRadius: new BorderRadius.circular(20.0),),
+          borderRadius: BorderRadius.circular(20.0),),
       )
     );
   }

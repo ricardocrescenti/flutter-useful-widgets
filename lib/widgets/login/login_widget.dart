@@ -152,7 +152,7 @@ class _LoginWidget extends State<LoginWidget> {
     );
   }
   _buildSocialLoginButtons(BuildContext context) {
-    if (widget.socialLoginButtons != null && widget.socialLoginButtons.length > 0) {
+    if (widget.socialLoginButtons != null && widget.socialLoginButtons.isNotEmpty) {
       List<Widget> widgets = [
         Padding(
           padding: EdgeInsets.only(bottom: 5),
