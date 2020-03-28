@@ -24,7 +24,7 @@ class LoginWidget extends StatefulWidget {
     this.registerText,
     this.forgetPasswordText,
     this.orSignWithText,
-    @required this.onLoginClick,
+    this.onLoginClick,
     this.onForgetPasswordClick,
     this.onRegisterClick,
     this.socialLoginButtons,
@@ -94,6 +94,10 @@ class _LoginWidget extends State<LoginWidget> {
     return null;
   }
   _buildForm(BuildContext context) {
+    if (widget.onLoginClick == null) {
+      return null;
+    }
+
     return SimpleForm(
       key: formState,
       initialValues: formValue,
@@ -127,6 +131,8 @@ class _LoginWidget extends State<LoginWidget> {
             ),
           ),
           RaisedButton(
+            color: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryColor),
+            textColor: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.title.color),
             child: Text('Login'),
             onPressed: () => widget.onLoginClick(context, formValue['username'], formValue['password']),
           ),
@@ -155,12 +161,14 @@ class _LoginWidget extends State<LoginWidget> {
     if (widget.socialLoginButtons != null && widget.socialLoginButtons.isNotEmpty) {
       List<Widget> widgets = [
         Padding(
-          padding: EdgeInsets.only(bottom: 5),
+          padding: EdgeInsets.only(
+            top: (widget.onLoginClick == null ? 20 : 0),
+            bottom: 5),
           child: Divider(),
         ),
         Padding(
           padding: EdgeInsets.only(bottom: 8),
-          child: Text(widget.orSignWithText ?? localization[LoginWidgetMessages.orSignWithText]),
+          child: Text(widget.orSignWithText ?? localization[widget.onLoginClick == null ? LoginWidgetMessages.signWithSocialAccountsText : LoginWidgetMessages.orSignWithSocialAccountsText], style: Theme.of(context).textTheme.body2,),
         ),
       ];
       widgets.addAll(widget.socialLoginButtons); 

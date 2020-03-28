@@ -9,6 +9,7 @@ export 'widgets/login/login_widget.dart';
 export 'widgets/refresh/refresh_widget.dart';
 export 'widgets/search/icon_search_button.dart';
 export 'widgets/search/search_widget.dart';
+export 'widgets/social_buttons/apple_login_button.dart';
 export 'widgets/social_buttons/default_social_button.dart';
 export 'widgets/social_buttons/facebook_login_button.dart';
 export 'widgets/social_buttons/github_login_button.dart';

@@ -25,10 +25,12 @@ class UsefulWidgetsLocalizations extends SimpleLocalizations {
       LoginWidgetMessages.passwordFieldText: 'Password',
       LoginWidgetMessages.registerText: 'Register',
       LoginWidgetMessages.forgetPasswordText: 'Forget your password?',
-      LoginWidgetMessages.orSignWithText: 'Or sign in with your preferred account',
+      LoginWidgetMessages.orSignWithSocialAccountsText: 'Or sign in with your preferred account',
+      LoginWidgetMessages.signWithSocialAccountsText: 'Sign in with your preferred account',
       // search_widget
       SearchWidgetMessages.searchHint: 'Search',
       // social buttons
+      SocialButtonsMessages.apple: 'Login with Apple',
       SocialButtonsMessages.facebook: 'Login with Facebook',
       SocialButtonsMessages.github: 'Login with GitHub',
       SocialButtonsMessages.google: 'Login with Google',
@@ -45,10 +47,12 @@ class UsefulWidgetsLocalizations extends SimpleLocalizations {
       LoginWidgetMessages.passwordFieldText: 'Contraseña',
       LoginWidgetMessages.registerText: 'Registro',
       LoginWidgetMessages.forgetPasswordText: '¿Olvidaste tu contraseña?',
-      LoginWidgetMessages.orSignWithText: 'O inicie sesión con su cuenta preferida',
+      LoginWidgetMessages.orSignWithSocialAccountsText: 'O inicie sesión con su cuenta preferida',
+      LoginWidgetMessages.signWithSocialAccountsText: 'Inicie sesión con su cuenta preferida',
       // search_widget
       SearchWidgetMessages.searchHint: 'Buscar',
       // social buttons
+      SocialButtonsMessages.apple: 'Login con Apple',
       SocialButtonsMessages.facebook: 'Login con Facebook',
       SocialButtonsMessages.github: 'Login con GitHub',
       SocialButtonsMessages.google: 'Login con Google',
@@ -65,10 +69,12 @@ class UsefulWidgetsLocalizations extends SimpleLocalizations {
       LoginWidgetMessages.passwordFieldText: 'Senha',
       LoginWidgetMessages.registerText: 'Cadastrar',
       LoginWidgetMessages.forgetPasswordText: 'Esqueceu sua senha?',
-      LoginWidgetMessages.orSignWithText: 'Ou efetue login com a sua conta preferida',
+      LoginWidgetMessages.orSignWithSocialAccountsText: 'Ou efetue login com a sua conta preferida',
+      LoginWidgetMessages.signWithSocialAccountsText: 'Efetue login com a sua conta preferida',
       // search_widget
       SearchWidgetMessages.searchHint: 'Procurar',
       // social buttons
+      SocialButtonsMessages.apple: 'Login com Apple',
       SocialButtonsMessages.facebook: 'Login com Facebook',
       SocialButtonsMessages.github: 'Login com GitHub',
       SocialButtonsMessages.google: 'Login com Google',

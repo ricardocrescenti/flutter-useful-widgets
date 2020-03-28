@@ -1,4 +1,4 @@
 enum FutureWidgetMessages { awaitMessage, errorMessage, retryButtonText }
-enum LoginWidgetMessages { userNameFieldText, passwordFieldText, registerText, forgetPasswordText, orSignWithText }
+enum LoginWidgetMessages { userNameFieldText, passwordFieldText, registerText, forgetPasswordText, signWithSocialAccountsText, orSignWithSocialAccountsText }
 enum SearchWidgetMessages { searchHint }
-enum SocialButtonsMessages { facebook, github, google, microsoft, twitter }
+enum SocialButtonsMessages { apple, facebook, github, google, microsoft, twitter }
