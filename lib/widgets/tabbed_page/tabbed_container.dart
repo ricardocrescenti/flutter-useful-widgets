@@ -30,7 +30,8 @@ class _TabbedContainer extends State<TabbedContainer> {
         ),
         bottomNavigationBar: Container(
           child: TabBar(
-            indicatorWeight: 4,
+            labelColor: Theme.of(context).textTheme.body2.color,
+            indicatorWeight: 5,
             labelPadding: EdgeInsets.all(0),
             labelStyle: Theme.of(context).textTheme.body2.copyWith(fontSize: 10),
             tabs: widget.tabs.keys.toList(),
