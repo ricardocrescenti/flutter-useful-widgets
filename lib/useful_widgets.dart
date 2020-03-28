@@ -4,6 +4,7 @@ export 'localizations/localizations_enums.dart';
 export 'localizations/useful_widgets_localization.dart';
 
 export 'widgets/bottom_button/bottom_button.dart';
+export 'widgets/empty_page/empty_page.dart';
 export 'widgets/future/future_widget.dart';
 export 'widgets/login/login_widget.dart';
 export 'widgets/refresh/refresh_widget.dart';
