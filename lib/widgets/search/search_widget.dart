@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:useful_widgets/useful_widgets.dart';
+import 'package:useful_widgets/widgets/future/await_widget.dart';
 
 import 'active_page_enum.dart';
 
@@ -40,6 +41,9 @@ abstract class SearchWidget<T> extends StatefulWidget {
   }
   Widget buildSugestion(BuildContext context) {
     return Container();
+  }
+  Widget buildSearching(BuildContext context) {
+    return AwaitWidget(UsefulWidgetsLocalizations.of(context)[SearchWidgetMessages.searchingMessage]);
   }
   Widget buildResult(BuildContext context, T result);
 
@@ -84,6 +88,7 @@ class SearchWidgetState<T> extends State<SearchWidget<T>> {
     if (_activePage == ActivePage.result) {
       return FutureWidget<T>(
         future: (context) => this._future,
+        awaitWidget: (context) => widget.buildSearching(context),
         builder: (context, result) {
           return widget.buildResult(context, result);
         }

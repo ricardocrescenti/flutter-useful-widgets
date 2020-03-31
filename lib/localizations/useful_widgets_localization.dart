@@ -29,6 +29,7 @@ class UsefulWidgetsLocalizations extends SimpleLocalizations {
       LoginWidgetMessages.signWithSocialAccountsText: 'Sign in with your preferred account',
       // search_widget
       SearchWidgetMessages.searchHint: 'Search',
+      SearchWidgetMessages.searchingMessage: 'Consulting',
       // social buttons
       SocialButtonsMessages.apple: 'Login with Apple',
       SocialButtonsMessages.facebook: 'Login with Facebook',
@@ -51,6 +52,7 @@ class UsefulWidgetsLocalizations extends SimpleLocalizations {
       LoginWidgetMessages.signWithSocialAccountsText: 'Inicie sesión con su cuenta preferida',
       // search_widget
       SearchWidgetMessages.searchHint: 'Buscar',
+      SearchWidgetMessages.searchingMessage: 'Consultoria',
       // social buttons
       SocialButtonsMessages.apple: 'Login con Apple',
       SocialButtonsMessages.facebook: 'Login con Facebook',
@@ -73,6 +75,7 @@ class UsefulWidgetsLocalizations extends SimpleLocalizations {
       LoginWidgetMessages.signWithSocialAccountsText: 'Efetue login com a sua conta preferida',
       // search_widget
       SearchWidgetMessages.searchHint: 'Procurar',
+      SearchWidgetMessages.searchingMessage: 'Consultando',
       // social buttons
       SocialButtonsMessages.apple: 'Login com Apple',
       SocialButtonsMessages.facebook: 'Login com Facebook',
