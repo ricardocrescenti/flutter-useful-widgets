@@ -7,8 +7,8 @@ class StepperWidget extends StatefulWidget {
   final bool centerTitle;
   final Widget continueButton;
   final Widget finalizeButton;
-  final Future<bool> Function() onWillPop;
-  final Future<bool> Function(BuildContext context) onFinalize;
+  final Future<bool> Function(BuildContext context) onWillPop;
+  final Future<void> Function(BuildContext context) onFinalize;
   final List<StepWidget> steps;
 
   StepperWidget({
@@ -75,7 +75,7 @@ class StepperWidgetState extends State<StepperWidget> {
     }
 
     if (currentStep == 0 && widget.onWillPop != null) {
-      canCancel = await widget.onWillPop();
+      canCancel = await widget.onWillPop(context);
     }
 
     if (canCancel) {
@@ -103,12 +103,9 @@ class StepperWidgetState extends State<StepperWidget> {
         });
       }
       else {
-        bool canFinalize = true;
         if (widget.onFinalize != null) {
-          canFinalize = await widget.onFinalize(context);
-        }
-
-        if (canFinalize) {
+          await widget.onFinalize(context);
+        } else {
           Navigator.of(context).pop();
         }
       }
