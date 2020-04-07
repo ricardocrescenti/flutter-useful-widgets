@@ -26,7 +26,7 @@ class TabButton extends StatelessWidget {
     }
 
     return Container(
-      padding: EdgeInsets.all(4),
+      padding: EdgeInsets.all(3),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: widgets,
