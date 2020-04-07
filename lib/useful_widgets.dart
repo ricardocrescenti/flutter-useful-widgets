@@ -21,4 +21,5 @@ export 'widgets/stepper/inherited_stepper.dart';
 export 'widgets/stepper/step_widget.dart';
 export 'widgets/stepper/stepper_widget.dart';
 export 'widgets/tab_button/tab_button.dart';
+export 'widgets/tabbed_sliver/tabbed_sliver.dart';
 export 'widgets/tabbed_container/tabbed_container.dart';
