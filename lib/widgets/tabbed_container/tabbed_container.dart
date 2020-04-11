@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class TabbedContainer extends StatefulWidget {
   final Map<Widget, Widget> tabs;
+  final bool keepTavViewAlive;
   final Widget Function(BuildContext context, Map<Widget, Widget> tabs, TabBar tabBar, TabBarView tabBarView) builder;
 
   TabbedContainer({
     @required this.tabs,
+    this.keepTavViewAlive = true,
     this.builder
   }) {
     assert(this.tabs != null && this.tabs.isNotEmpty, 'You need to inform the tabs');
@@ -36,6 +38,10 @@ class _TabbedContainer extends State<TabbedContainer> {
   void initState() {
     super.initState();
     this.tabs = widget.tabs;
+
+    if (widget.keepTavViewAlive) {
+      this.tabs.forEach((key, value) => this.tabs[key] = _KeepTabViewAlive(child: value));
+    }
   }
 
   @override
@@ -59,4 +65,23 @@ class _TabbedContainer extends State<TabbedContainer> {
       child: widget.build(context, tabs, tabBar, tabBarView),
     );
   }
+}
+
+class _KeepTabViewAlive extends StatefulWidget {
+  final Widget child;
+  _KeepTabViewAlive({@required this.child});
+
+  @override
+  State<StatefulWidget> createState() => _KeepTabViewAliveState();
+}
+
+class _KeepTabViewAliveState extends State<_KeepTabViewAlive> with AutomaticKeepAliveClientMixin<_KeepTabViewAlive> {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return widget.child;
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }
