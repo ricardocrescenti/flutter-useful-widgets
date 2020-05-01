@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class TabbedContainer extends StatefulWidget {
   final Map<Widget, Widget> tabs;
   final bool keepTavViewAlive;
+  final void Function(TabController tabController) onTabChanged;
   final Widget Function(BuildContext context, Map<Widget, Widget> tabs, TabBar tabBar, TabBarView tabBarView) builder;
 
   TabbedContainer({
     @required this.tabs,
     this.keepTavViewAlive = true,
+    this.onTabChanged,
     this.builder
   }) {
     assert(this.tabs != null && this.tabs.isNotEmpty, 'You need to inform the tabs');
@@ -30,14 +32,17 @@ class TabbedContainer extends StatefulWidget {
   State<StatefulWidget> createState() => _TabbedContainer();
 }
 
-class _TabbedContainer extends State<TabbedContainer> {
+class _TabbedContainer extends State<TabbedContainer> with TickerProviderStateMixin {
   Map<Widget, Widget> tabs;
   TabController tabContoller;
 
   @override
   void initState() {
     super.initState();
+
     this.tabs = widget.tabs;
+    this.tabContoller = TabController(length: tabs.length, vsync: this);  
+    this.tabContoller.addListener(_onTabChanged);
 
     if (widget.keepTavViewAlive) {
       this.tabs.forEach((key, value) => this.tabs[key] = _KeepTabViewAlive(child: value));
@@ -64,6 +69,12 @@ class _TabbedContainer extends State<TabbedContainer> {
       length: tabs.length,
       child: widget.build(context, tabs, tabBar, tabBarView),
     );
+  }
+
+  void _onTabChanged() {
+    if (widget.onTabChanged != null) {
+      widget.onTabChanged(tabContoller);
+    }
   }
 }
 
