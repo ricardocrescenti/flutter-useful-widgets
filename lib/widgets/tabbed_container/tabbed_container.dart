@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
+enum TabPosition { top, bottom }
+
 class TabbedContainer extends StatefulWidget {
   final Map<Widget, Widget> tabs;
   final bool keepTavViewAlive;
+  final TabPosition tabPosition;
   final void Function(TabController tabController) onTabChanged;
   final Widget Function(BuildContext context, Map<Widget, Widget> tabs, TabBar tabBar, TabBarView tabBarView) builder;
 
   TabbedContainer({
     @required this.tabs,
     this.keepTavViewAlive = true,
+    this.tabPosition = TabPosition.top,
     this.onTabChanged,
     this.builder
   }) {
@@ -21,10 +25,21 @@ class TabbedContainer extends StatefulWidget {
     }
     
     return Scaffold(
-      body: tabBarView,
-      bottomNavigationBar: Container(
-        child: tabBar,
+      body: (this.tabPosition == TabPosition.bottom 
+        ? tabBarView
+        : Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            tabBar,
+            Expanded(child: tabBarView)
+          ]
+        )
       ),
+      bottomNavigationBar: (this.tabPosition == TabPosition.bottom 
+        ? Container(
+          child: tabBar)
+        : null
+      )
     );
   }
   
@@ -56,7 +71,7 @@ class _TabbedContainer extends State<TabbedContainer> with TickerProviderStateMi
       labelColor: Theme.of(context).textTheme.body2.color,
       indicatorWeight: 5,
       labelPadding: EdgeInsets.all(0),
-      labelStyle: Theme.of(context).textTheme.body2.copyWith(fontSize: 10),
+      //labelStyle: Theme.of(context).textTheme.body2.copyWith(fontSize: 10),
       tabs: tabs.keys.toList(),
     );
     
