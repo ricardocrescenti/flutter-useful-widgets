@@ -21,7 +21,7 @@ class TabbedSliver extends TabbedContainer {
           ),
           SliverOverlapAbsorber(
             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-            child: SliverPersistentHeader(
+            sliver: SliverPersistentHeader(
               pinned: true,
               floating: true,
               delegate: _SliverTabBarDelegate(

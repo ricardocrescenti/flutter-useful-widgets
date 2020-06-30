@@ -48,19 +48,19 @@ class TabbedContainer extends StatefulWidget {
 }
 
 class _TabbedContainer extends State<TabbedContainer> with TickerProviderStateMixin {
-  Map<Widget, Widget> tabs;
+  //Map<Widget, Widget> tabs;
   TabController tabContoller;
 
   @override
   void initState() {
     super.initState();
 
-    this.tabs = widget.tabs;
-    this.tabContoller = TabController(length: tabs.length, vsync: this);  
+    //this.tabs = widget.tabs;
+    this.tabContoller = TabController(length: widget.tabs.length, vsync: this);  
     this.tabContoller.addListener(_onTabChanged);
 
     if (widget.keepTavViewAlive) {
-      this.tabs.forEach((key, value) => this.tabs[key] = _KeepTabViewAlive(child: value));
+      this.widget.tabs.forEach((key, value) => this.widget.tabs[key] = _KeepTabViewAlive(child: value));
     }
   }
 
@@ -72,17 +72,17 @@ class _TabbedContainer extends State<TabbedContainer> with TickerProviderStateMi
       indicatorWeight: 5,
       labelPadding: EdgeInsets.all(0),
       //labelStyle: Theme.of(context).textTheme.body2.copyWith(fontSize: 10),
-      tabs: tabs.keys.toList(),
+      tabs: widget.tabs.keys.toList(),
     );
     
     TabBarView tabBarView = TabBarView(
       controller: tabContoller,
-      children: tabs.values.toList(),
+      children: widget.tabs.values.toList(),
     );
 
     return DefaultTabController(
-      length: tabs.length,
-      child: widget.build(context, tabs, tabBar, tabBarView),
+      length: widget.tabs.length,
+      child: widget.build(context, widget.tabs, tabBar, tabBarView),
     );
   }
 
