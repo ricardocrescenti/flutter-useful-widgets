@@ -132,7 +132,7 @@ class _LoginWidget extends State<LoginWidget> {
           ),
           RaisedButton(
             color: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryColor),
-            textColor: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.title.color),
+            textColor: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.headline6.color),
             child: Text('Login'),
             onPressed: () => widget.onLoginClick(context, formValue['username'], formValue['password']),
           ),
@@ -168,7 +168,7 @@ class _LoginWidget extends State<LoginWidget> {
         ),
         Padding(
           padding: EdgeInsets.only(bottom: 8),
-          child: Text(widget.orSignWithText ?? localization[widget.onLoginClick == null ? LoginWidgetMessages.signWithSocialAccountsText : LoginWidgetMessages.orSignWithSocialAccountsText], style: Theme.of(context).textTheme.body2,),
+          child: Text(widget.orSignWithText ?? localization[widget.onLoginClick == null ? LoginWidgetMessages.signWithSocialAccountsText : LoginWidgetMessages.orSignWithSocialAccountsText], style: Theme.of(context).textTheme.bodyText1,),
         ),
       ];
       widgets.addAll(widget.socialLoginButtons); 

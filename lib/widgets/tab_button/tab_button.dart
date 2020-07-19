@@ -22,7 +22,7 @@ class TabButton extends StatelessWidget {
       if (this.icon != null) {
         widgets.add(Padding(padding: EdgeInsets.all(2)));
       }
-      widgets.add(Text(text, style: Theme.of(context).textTheme.body2.copyWith(fontSize: 10)));
+      widgets.add(Text(text, style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 10)));
     }
 
     return Container(

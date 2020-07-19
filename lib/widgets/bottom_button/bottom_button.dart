@@ -18,7 +18,7 @@ class BottomButton extends StatelessWidget {
     return RaisedButton(
       padding: EdgeInsets.all(15),
       color: (color == null ? (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryColor) : color),
-      textColor: (textColor == null ? (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.title.color) : textColor),
+      textColor: (textColor == null ? (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.headline6.color) : textColor),
       child: child,
       onPressed: onPressed,
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

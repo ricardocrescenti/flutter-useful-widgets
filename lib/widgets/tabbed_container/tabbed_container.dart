@@ -68,7 +68,7 @@ class _TabbedContainer extends State<TabbedContainer> with TickerProviderStateMi
   Widget build(BuildContext context) {
     TabBar tabBar = TabBar(
       controller: tabContoller,
-      labelColor: Theme.of(context).textTheme.body2.color,
+      labelColor: Theme.of(context).textTheme.bodyText1.color,
       indicatorWeight: 5,
       labelPadding: EdgeInsets.all(0),
       //labelStyle: Theme.of(context).textTheme.body2.copyWith(fontSize: 10),

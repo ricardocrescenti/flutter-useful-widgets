@@ -61,7 +61,7 @@ class StepperWidgetState extends State<StepperWidget> {
     return RaisedButton(
       padding: EdgeInsets.all(15),
       color: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryColor),
-      textColor: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.title.color),
+      textColor: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.headline6.color),
       child: (currentStep == widget.steps.length - 1 ? widget.finalizeButton : (widget.steps[currentStep].continueButton != null ? widget.steps[currentStep].continueButton : widget.continueButton)),
       onPressed: () => goToNextStep(context),
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,

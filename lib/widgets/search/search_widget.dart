@@ -33,7 +33,7 @@ abstract class SearchWidget<T> extends StatefulWidget {
           )
         ),
         controller: searchWidget.textEditingController,
-        style: Theme.of(context).textTheme.title,
+        style: Theme.of(context).textTheme.headline6,
         onSubmitted: (value) => searchWidget.performSearch(value)
       ),
       automaticallyImplyLeading: false,

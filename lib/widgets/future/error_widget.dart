@@ -18,7 +18,7 @@ class ErrorWidget extends StatelessWidget {
       Icon(Icons.error, size: 70,),
       Padding(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        child: Text(message ?? localization[FutureWidgetMessages.errorMessage], textAlign: TextAlign.center, style: Theme.of(context).textTheme.body2,)
+        child: Text(message ?? localization[FutureWidgetMessages.errorMessage], textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyText1,)
       )
     ];
 
