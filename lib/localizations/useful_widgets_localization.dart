@@ -17,16 +17,17 @@ class UsefulWidgetsLocalizations extends SimpleLocalizations {
   Map<String, Map<dynamic, String>> get localizedValues => {
     'en': {
       // future_widget
-      FutureWidgetMessages.retryButtonText: 'Try Again',
+      FutureWidgetMessages.retryButton: 'Try Again',
       FutureWidgetMessages.awaitMessage: 'Loading',
       FutureWidgetMessages.errorMessage: 'Could not complete request',
       // login_widget
-      LoginWidgetMessages.userNameFieldText: 'Username',
-      LoginWidgetMessages.passwordFieldText: 'Password',
-      LoginWidgetMessages.registerText: 'Register',
-      LoginWidgetMessages.forgetPasswordText: 'Forget your password?',
-      LoginWidgetMessages.orSignWithSocialAccountsText: 'Or sign in with your preferred account',
-      LoginWidgetMessages.signWithSocialAccountsText: 'Sign in with your preferred account',
+      LoginWidgetMessages.signWithEmailAndPassword: 'Enter your email and password to login',
+      LoginWidgetMessages.userNameField: 'Username',
+      LoginWidgetMessages.passwordField: 'Password',
+      LoginWidgetMessages.register: 'Register',
+      LoginWidgetMessages.recoverPassword: 'Recover Password',
+      LoginWidgetMessages.orSignWithSocialAccounts: 'Or sign in with your preferred account',
+      LoginWidgetMessages.signWithSocialAccounts: 'Sign in with your preferred account',
       // search_widget
       SearchWidgetMessages.searchHint: 'Search',
       SearchWidgetMessages.searchingMessage: 'Consulting',
@@ -40,16 +41,17 @@ class UsefulWidgetsLocalizations extends SimpleLocalizations {
     },
     'es': {
       // future_widget
-      FutureWidgetMessages.retryButtonText: 'Intentar Nuevamente',
+      FutureWidgetMessages.retryButton: 'Intentar Nuevamente',
       FutureWidgetMessages.awaitMessage: 'Cargando',
       FutureWidgetMessages.errorMessage: 'No se pudo completar la solicitud.',
       // login_widget
-      LoginWidgetMessages.userNameFieldText: 'Usuario',
-      LoginWidgetMessages.passwordFieldText: 'Contraseña',
-      LoginWidgetMessages.registerText: 'Registro',
-      LoginWidgetMessages.forgetPasswordText: '¿Olvidaste tu contraseña?',
-      LoginWidgetMessages.orSignWithSocialAccountsText: 'O inicie sesión con su cuenta preferida',
-      LoginWidgetMessages.signWithSocialAccountsText: 'Inicie sesión con su cuenta preferida',
+      LoginWidgetMessages.signWithEmailAndPassword: 'Ingrese su correo electrónico y contraseña para iniciar sesión',
+      LoginWidgetMessages.userNameField: 'Usuario',
+      LoginWidgetMessages.passwordField: 'Contraseña',
+      LoginWidgetMessages.register: 'Registro',
+      LoginWidgetMessages.recoverPassword: 'Recuperar contraseña',
+      LoginWidgetMessages.orSignWithSocialAccounts: 'O inicie sesión con su cuenta preferida',
+      LoginWidgetMessages.signWithSocialAccounts: 'Inicie sesión con su cuenta preferida',
       // search_widget
       SearchWidgetMessages.searchHint: 'Buscar',
       SearchWidgetMessages.searchingMessage: 'Consultoria',
@@ -63,16 +65,17 @@ class UsefulWidgetsLocalizations extends SimpleLocalizations {
     },
     'pt': {
       // future_widget
-      FutureWidgetMessages.retryButtonText: 'Tentar Novamente',
+      FutureWidgetMessages.retryButton: 'Tentar Novamente',
       FutureWidgetMessages.awaitMessage: 'Carregando',
       FutureWidgetMessages.errorMessage: 'Não foi possível concluir a solicitação',
       // login_widget
-      LoginWidgetMessages.userNameFieldText: 'Usuário',
-      LoginWidgetMessages.passwordFieldText: 'Senha',
-      LoginWidgetMessages.registerText: 'Cadastrar',
-      LoginWidgetMessages.forgetPasswordText: 'Esqueceu sua senha?',
-      LoginWidgetMessages.orSignWithSocialAccountsText: 'Ou efetue login com a sua conta preferida',
-      LoginWidgetMessages.signWithSocialAccountsText: 'Efetue login com a sua conta preferida',
+      LoginWidgetMessages.signWithEmailAndPassword: 'Informe o seu e-mail e senha para entrar',
+      LoginWidgetMessages.userNameField: 'Usuário',
+      LoginWidgetMessages.passwordField: 'Senha',
+      LoginWidgetMessages.register: 'Cadastrar',
+      LoginWidgetMessages.recoverPassword: 'Recuperar senha',
+      LoginWidgetMessages.orSignWithSocialAccounts: 'Ou efetue login com a sua conta preferida',
+      LoginWidgetMessages.signWithSocialAccounts: 'Efetue login com a sua conta preferida',
       // search_widget
       SearchWidgetMessages.searchHint: 'Procurar',
       SearchWidgetMessages.searchingMessage: 'Consultando',

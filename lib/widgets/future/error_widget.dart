@@ -26,7 +26,7 @@ class ErrorWidget extends StatelessWidget {
       widgets.addAll([
         Padding(padding: EdgeInsets.all(10),),
         RaisedButton(
-          child: Text(localization[FutureWidgetMessages.retryButtonText]),
+          child: Text(localization[FutureWidgetMessages.retryButton]),
           onPressed: () => retry(context),
         )
       ]);

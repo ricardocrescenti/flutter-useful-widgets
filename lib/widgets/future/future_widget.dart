@@ -4,20 +4,20 @@ import 'await_widget.dart';
 import 'error_widget.dart' as error_widget;
 
 class FutureWidget<T> extends StatefulWidget {
-  final Future<T> Function(BuildContext context) future;
+  final Future<T> Function(BuildContext context) load;
   final Widget Function(BuildContext context, T data) builder;
   final Widget Function(BuildContext context) awaitWidget;
   final Widget Function(BuildContext context, Object error, Function retry) errorWidget;
-  final Function(BuildContext context) retry;
+  final bool allowRetry;
   final String awaitMessage;
   final String errorMessage;
   
   FutureWidget({
-    @required this.future,
+    @required this.load,
     @required this.builder,
     this.awaitWidget,
     this.errorWidget,
-    this.retry,
+    this.allowRetry = false,
     this.awaitMessage,
     this.errorMessage,
   });
@@ -27,10 +27,18 @@ class FutureWidget<T> extends StatefulWidget {
 }
 
 class _FutureWidgetState<T> extends State<FutureWidget<T>> {
+  Future<T> _futureLoad;
+
+  @override
+  void initState() {
+    super.initState();
+    this._load(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<T>(
-      future: widget.future(context),
+      future: _futureLoad,
       builder: (context, snapshot) {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -53,13 +61,14 @@ class _FutureWidgetState<T> extends State<FutureWidget<T>> {
 
   _buildErrorWidget(BuildContext context, Object error) {
     return (widget.errorWidget != null 
-      ? widget.errorWidget(context, error, _performRetry) 
-      : error_widget.ErrorWidget(widget.errorMessage, (widget.retry != null ? _performRetry : null)));
+      ? widget.errorWidget(context, error, _load) 
+      : error_widget.ErrorWidget(widget.errorMessage, (widget.allowRetry ? _load : null)));
   }
 
-  _performRetry(BuildContext context) {
-    if (widget.retry != null) {
-      widget.retry(context);
+  _load(BuildContext context) {
+    bool canSetState = (_futureLoad == null);    
+    _futureLoad = widget.load(context);
+    if (canSetState) {
       setState(() {});
     }
   }

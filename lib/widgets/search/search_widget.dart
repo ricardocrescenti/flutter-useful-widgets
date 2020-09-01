@@ -87,7 +87,7 @@ class SearchWidgetState<T> extends State<SearchWidget<T>> {
   _buildBody() {
     if (_activePage == ActivePage.result) {
       return FutureWidget<T>(
-        future: (context) => this._future,
+        load: (context) => this._future,
         awaitWidget: (context) => widget.buildSearching(context),
         builder: (context, result) {
           return widget.buildResult(context, result);
