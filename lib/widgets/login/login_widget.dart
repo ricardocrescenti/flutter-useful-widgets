@@ -70,7 +70,11 @@ class _LoginWidget extends State<LoginWidget> {
 
   _buildLogo() {
     if (widget.logo != null) {
-      return widget.logo;
+      return 
+					Padding(
+						padding: EdgeInsets.only(bottom: 30),
+						child: widget.logo
+					);
     }
     return null;
   }
@@ -114,8 +118,6 @@ class _LoginWidget extends State<LoginWidget> {
             ),
           ),
           RaisedButton(
-            color: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryColor),
-            textColor: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.headline6.color),
             child: Text('Login'),
             onPressed: () => widget.onLoginClick(context, formValue['username'], formValue['password']),
           ),
