@@ -21,6 +21,7 @@ dependencies:
       url: https://github.com/ricardocrescenti/flutter-simple-form.git
       ref: master
 
+  cached_network_image: ^2.5.0
   font_awesome_flutter: ^8.5.0
 
 dev_dependencies:

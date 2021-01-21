@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
 class EmptyPage extends StatelessWidget {
+  static EdgeInsets defaultPadding = const EdgeInsets.all(20);
+  static double defaultOpacity = 0.7;
+
   final EdgeInsets padding;
+  final double opacity;
   final Widget title;
   final Widget body;
   final List<Widget> actions;
 
   EmptyPage({
-    this.padding = const EdgeInsets.all(20),
+    this.padding,
+    this.opacity,
     this.title,
     @required this.body,
     this.actions
@@ -32,12 +37,15 @@ class EmptyPage extends StatelessWidget {
       childs.addAll(actions);
     }
 
-    return Padding(
-      padding: padding, 
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: childs,
+    return Opacity(
+      opacity: this.opacity ?? EmptyPage.defaultOpacity,
+      child: Padding(
+        padding: this.padding ?? EmptyPage.defaultPadding, 
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: childs,
+          )
         )
       )
     );

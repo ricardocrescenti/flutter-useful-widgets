@@ -45,10 +45,7 @@ class StepperWidgetState extends State<StepperWidget> {
 
   buildAppBar() {
     if (widget.showStepTitle) {
-      return AppBar(
-        title: widget.steps[currentStep].title,
-        centerTitle: widget.centerTitle,
-      );
+      return widget.steps[currentStep].appBar;
     }
     return null;
   }

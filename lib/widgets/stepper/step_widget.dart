@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class StepWidget extends StatelessWidget {
-  final Widget title;
+  final AppBar appBar;
   final bool showContinueButton;
   final Widget continueButton;
   final Future<bool> Function(BuildContext context) onContinue;
@@ -9,7 +9,7 @@ class StepWidget extends StatelessWidget {
   final Widget Function(BuildContext context) builder;
 
   StepWidget({
-    this.title,
+    this.appBar,
     this.showContinueButton = true,
     this.continueButton,
     this.onContinue,

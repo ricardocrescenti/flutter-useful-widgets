@@ -2,9 +2,37 @@
 
 This package makes it easy to build apps by providing a list of simple and useful widgets.
 
+# Simple Localization
+
+Easily internationalize your package or application.
+
+- **[Introduction](#introduction)**
+- **[How to Install](#how-to-install)**
+- **[How to Implement](#how-to-implement)**
+- **[Internationalize a Package](#internationalize-a-package)**
+- **[Customizing internationalized packages](#customizing-internationalized-packages)**
+
+## Introduction
+
+This package simplifies the internationalization of your package or application.
+
+## How to Install
+
+Add the dependency on `pubspec.yaml`. 
+
+*Informing `^` at the beginning of the version, you will receive all updates that are made from version `2.0.0` up to the version before `3.0.0`.*
+
+```yaml
+dependencies:
+  useful_widgets: ^2.0.0
+```
+
+Import the package in the source code.
+
 ```dart
 import 'package:useful_widgets/useful_widgets.dart';
 ```
+##########
 
 List of Widgets available in this package
 
@@ -27,7 +55,7 @@ FutureWidget<String>(
 ```
 | Sucess   |     Error     |
 |----------|:-------------:|
-| <img src="https://raw.githubusercontent.com/ricardocrescenti/flutter-useful-widgets/master/example/images/future_widget_sucess.gif"  height = "400" alt="PieChart"> |  <img src="https://raw.githubusercontent.com/ricardocrescenti/flutter-useful-widgets/master/example/images/future_widget_error.gif"  height = "400" alt="PieChart"> |
+| <img src="https://raw.githubusercontent.com/ricardocrescenti/flutter-useful-widgets/master/example/assets/future_widget_sucess.gif"  height = "400" alt="PieChart"> |  <img src="https://raw.githubusercontent.com/ricardocrescenti/flutter-useful-widgets/master/example/assets/future_widget_error.gif"  height = "400" alt="PieChart"> |
 
 The 'Retry' button only is showed if `retry` parameter is informed.
 
@@ -50,7 +78,7 @@ RefreshWidget<List<String>>(
 
 | Refresh   |
 |----------|
-| <img src="https://raw.githubusercontent.com/ricardocrescenti/flutter-useful-widgets/master/example/images/refresh_widget.gif"  height = "400" alt="PieChart"> |
+| <img src="https://raw.githubusercontent.com/ricardocrescenti/flutter-useful-widgets/master/example/assets/refresh_widget.gif"  height = "400" alt="PieChart"> |
 
 Example: [Weather Forecast](https://github.com/ricardocrescenti/flutter-weather-forecast)
 
@@ -107,7 +135,7 @@ class CitySearchWidget extends SearchWidget<List<CityModel>> {
 
 | Search   |
 |----------|
-| <img src="https://raw.githubusercontent.com/ricardocrescenti/flutter-useful-widgets/master/example/images/search_widget.gif"  height = "400" alt="PieChart"> |
+| <img src="https://raw.githubusercontent.com/ricardocrescenti/flutter-useful-widgets/master/assets/images/search_widget.gif"  height = "400" alt="PieChart"> |
 
 Example: [Weather Forecast](https://github.com/ricardocrescenti/flutter-weather-forecast)
 
