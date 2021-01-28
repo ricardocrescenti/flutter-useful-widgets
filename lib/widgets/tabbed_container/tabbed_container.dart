@@ -4,14 +4,14 @@ enum TabPosition { top, bottom }
 
 class TabbedContainer extends StatefulWidget {
   final Map<Widget, Widget> tabs;
-  final bool keepTavViewAlive;
+  final bool keepTabViewAlive;
   final TabPosition tabPosition;
   final void Function(TabController tabController) onTabChanged;
   final Widget Function(BuildContext context, Map<Widget, Widget> tabs, TabBar tabBar, TabBarView tabBarView) builder;
 
   TabbedContainer({
     @required this.tabs,
-    this.keepTavViewAlive = true,
+    this.keepTabViewAlive = true,
     this.tabPosition = TabPosition.top,
     this.onTabChanged,
     this.builder
@@ -58,14 +58,18 @@ class _TabbedContainer extends State<TabbedContainer> with TickerProviderStateMi
     //this.tabs = widget.tabs;
     this.tabContoller = TabController(length: widget.tabs.length, vsync: this);  
     this.tabContoller.addListener(_onTabChanged);
-
-    if (widget.keepTavViewAlive) {
-      this.widget.tabs.forEach((key, value) => this.widget.tabs[key] = _KeepTabViewAlive(child: value));
-    }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (widget.keepTabViewAlive) {
+      this.widget.tabs.forEach((key, value) {
+        if (!(this.widget.tabs[key] is _KeepTabViewAlive)) {
+          this.widget.tabs[key] = _KeepTabViewAlive(child: value);
+        }
+      });
+    }
+
     TabBar tabBar = TabBar(
       controller: tabContoller,
       labelColor: Theme.of(context).textTheme.bodyText1.color,

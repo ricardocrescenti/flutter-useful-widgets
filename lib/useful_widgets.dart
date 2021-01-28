@@ -8,6 +8,7 @@ export 'widgets/empty_page/empty_page.dart';
 export 'widgets/future/future_widget.dart';
 export 'widgets/image/image_widget.dart';
 export 'widgets/login/login_widget.dart';
+export 'widgets/rating/rating_widget.dart';
 export 'widgets/refresh/refresh_widget.dart';
 export 'widgets/search/icon_search_button.dart';
 export 'widgets/search/search_widget.dart';
