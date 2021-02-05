@@ -71,7 +71,12 @@ class ImageWidget extends StatelessWidget {
 	}
 
 	_buildAwaitWidget(BuildContext context) {
-		return CircularProgressIndicator();
+		return Container(
+			child: Center(
+				child: CircularProgressIndicator(
+				)
+			)
+		);
 	}
 
 	_buildErrorWidget(BuildContext context) {
