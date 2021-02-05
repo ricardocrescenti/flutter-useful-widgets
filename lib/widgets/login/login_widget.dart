@@ -42,9 +42,13 @@ class _LoginWidget extends State<LoginWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
+        alignment: AlignmentDirectional.center,
         children: <Widget>[
           _buildBackground(),
-          _buildScreen(context),
+          Container(
+            constraints: BoxConstraints(maxWidth: 500),
+            child: _buildScreen(context)
+          ),
         ]
       )
     );
