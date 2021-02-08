@@ -9,13 +9,15 @@ class EmptyPage extends StatelessWidget {
   final Widget title;
   final Widget body;
   final List<Widget> actions;
+  final bool scroll;
 
   EmptyPage({
     this.padding,
     this.opacity,
     this.title,
     @required this.body,
-    this.actions
+    this.actions,
+    this.scroll = true,
   });
 
   @override
@@ -37,7 +39,7 @@ class EmptyPage extends StatelessWidget {
       childs.addAll(actions);
     }
 
-    return Opacity(
+    Widget child = Opacity(
       opacity: this.opacity ?? EmptyPage.defaultOpacity,
       child: Padding(
         padding: this.padding ?? EmptyPage.defaultPadding, 
@@ -49,5 +51,7 @@ class EmptyPage extends StatelessWidget {
         )
       )
     );
+
+    return (scroll ? SingleChildScrollView(child: child) : child);
   }
 }
