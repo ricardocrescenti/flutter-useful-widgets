@@ -76,6 +76,7 @@ class _TabbedContainer extends State<TabbedContainer> with TickerProviderStateMi
       indicatorWeight: 5,
       labelPadding: EdgeInsets.all(0),
       //labelStyle: Theme.of(context).textTheme.body2.copyWith(fontSize: 10),
+      indicatorColor: Theme.of(context).colorScheme.primary,
       tabs: widget.tabs.keys.toList(),
     );
     
