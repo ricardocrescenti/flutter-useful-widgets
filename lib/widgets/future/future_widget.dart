@@ -4,20 +4,20 @@ import 'await_widget.dart';
 import 'error_widget.dart' as error_widget;
 
 class FutureWidget<T> extends StatefulWidget {
-  final Future<T> Function(BuildContext context) load;
+  final Future<T> future;
+  final Future<T> Function(BuildContext context) retry;
   final Widget Function(BuildContext context, T data) builder;
   final Widget Function(BuildContext context) awaitWidget;
-  final Widget Function(BuildContext context, Object error, Function retry) errorWidget;
-  final bool allowRetry;
+  final Widget Function(BuildContext context, Object error, Future<T> Function(BuildContext context) retry) errorWidget;
   final String awaitMessage;
   final String errorMessage;
   
   FutureWidget({
-    @required this.load,
+    @required this.future,
+    this.retry,
     @required this.builder,
     this.awaitWidget,
     this.errorWidget,
-    this.allowRetry = false,
     this.awaitMessage,
     this.errorMessage,
   });
@@ -27,18 +27,16 @@ class FutureWidget<T> extends StatefulWidget {
 }
 
 class _FutureWidgetState<T> extends State<FutureWidget<T>> {
-  Future<T> _futureLoad;
 
   @override
   void initState() {
     super.initState();
-    this._load(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<T>(
-      future: _futureLoad,
+      future: widget.future,
       builder: (context, snapshot) {
 
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -61,15 +59,8 @@ class _FutureWidgetState<T> extends State<FutureWidget<T>> {
 
   _buildErrorWidget(BuildContext context, Object error) {
     return (widget.errorWidget != null 
-      ? widget.errorWidget(context, error, _load) 
-      : error_widget.ErrorWidget(widget.errorMessage, (widget.allowRetry ? _load : null)));
+      ? widget.errorWidget(context, error, widget.retry) 
+      : error_widget.ErrorWidget<T>(widget.errorMessage, widget.retry));
   }
 
-  _load(BuildContext context) {
-    bool canSetState = (_futureLoad == null);    
-    _futureLoad = widget.load(context);
-    if (canSetState) {
-      setState(() {});
-    }
-  }
 }

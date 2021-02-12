@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:useful_widgets/useful_widgets.dart';
 
 /// Default error widget used by `FutureWidget`
-class ErrorWidget extends StatelessWidget {
+class ErrorWidget<T> extends StatelessWidget {
   final String message;
-  final Function(BuildContext context) retry;
+  final Future<T> Function(BuildContext context) retry;
   
   ErrorWidget(
     this.message,

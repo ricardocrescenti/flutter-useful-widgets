@@ -5,101 +5,133 @@ import 'package:useful_widgets/widgets/future/await_widget.dart';
 
 import 'active_page_enum.dart';
 
-abstract class SearchWidget<T> extends StatefulWidget {
-  final String hintText;
+class SearchWidget<T> extends StatefulWidget {
+	final String hintText;
+	final AppBar Function(BuildContext context, Widget searchField) buildAppBar;
+	final Widget Function(BuildContext context) buildSugestion;
+	final Widget Function(BuildContext context) buildAwaitSearch;
+	final Widget Function(BuildContext context, T result) buildResult;
+	final Future<T> Function(BuildContext context, String query) search;
+	final SearchController<T> controller;
 
-  SearchWidget({
-    this.hintText,
-  });
+	SearchWidget({
+		this.hintText,
+		this.buildAppBar,
+		this.buildSugestion,
+		this.buildAwaitSearch,
+		@required this.buildResult,
+		@required this.search,
+		this.controller
+	});
 
-  AppBar buildAppBar(BuildContext context, SearchWidgetState<T> searchWidget) {
-    return AppBar(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      titleSpacing: 4,
-      title: TextField(
-        autofocus: true,
-        textInputAction: TextInputAction.search,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          filled: true,
-          hintText: hintText ?? UsefulWidgetsLocalizations.of(context)[SearchWidgetMessages.searchHint],
-          prefixIcon: IconButton(
-            icon: Icon(Icons.chevron_left),
-            onPressed: () => close(context),
-          ),
-          suffixIcon: IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () => searchWidget.performSearch(searchWidget.textEditingController.text)
-          )
-        ),
-        controller: searchWidget.textEditingController,
-        style: Theme.of(context).textTheme.headline6,
-        onSubmitted: (value) => searchWidget.performSearch(value)
-      ),
-      automaticallyImplyLeading: false,
-    );
-  }
-  Widget buildSugestion(BuildContext context) {
-    return Container();
-  }
-  Widget buildSearching(BuildContext context) {
-    return AwaitWidget(UsefulWidgetsLocalizations.of(context)[SearchWidgetMessages.searchingMessage]);
-  }
-  Widget buildResult(BuildContext context, T result);
-
-  bool canSearch(BuildContext context, String query) {
-    return true;
-  }
-
-  Future<T> search(String query);
-
-  close(BuildContext context) {
-    Navigator.of(context).pop();
-  }
-
-  @override
-  State<StatefulWidget> createState() => SearchWidgetState<T>();
+	@override
+	State<StatefulWidget> createState() => _SearchWidgetState<T>();
 }
 
-class SearchWidgetState<T> extends State<SearchWidget<T>> {
-  Future _future;
-  ActivePage _activePage = ActivePage.sugestion;
+class _SearchWidgetState<T> extends State<SearchWidget<T>> {
+	SearchController<T> controller;
 
-  TextEditingController textEditingController = TextEditingController();
+	TextEditingController textEditingController = TextEditingController();
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: widget.buildAppBar(context, this),
-      body: _buildBody()
-    );
-  }
+	void didChangeDependencies() {
+		super.didChangeDependencies();
 
-  performSearch(String query) {
-    if (widget.canSearch(context, query)) {
-      setState(() {
-        this._activePage = ActivePage.result;
-        this._future = widget.search(query);
-      });
-    }
-  }
+		if (controller == null) {    
+			controller = widget.controller ?? SearchController<T>();
+			controller.addListener(listener);
+		}
+	}
 
-  _buildBody() {
-    if (_activePage == ActivePage.result) {
-      return FutureWidget<T>(
-        load: (context) => this._future,
-        awaitWidget: (context) => widget.buildSearching(context),
-        builder: (context, result) {
-          return widget.buildResult(context, result);
-        }
-      );
-    } else {
-      return widget.buildSugestion(context);
-    }
-  }
+	@override
+	Widget build(BuildContext context) {
+		return WillPopScope(
+			onWillPop: () => goBack(),
+			child: Scaffold(
+				appBar: buildAppBar(context, buildSearchField()),
+				body: buildBody()
+			)
+		);
+	}
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
+	AppBar buildAppBar(BuildContext context, Widget searchField) {
+		if (widget.buildAppBar != null) {
+			return widget.buildAppBar(context, searchField);
+		}
+
+		return AppBar(
+			backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+			titleSpacing: 4,
+			title: searchField,
+			automaticallyImplyLeading: false,
+		);
+	}
+
+	Widget buildSearchField() {
+		return TextField(
+			autofocus: false,
+			textInputAction: TextInputAction.search,
+			decoration: InputDecoration(
+				border: InputBorder.none,
+				filled: true,
+				hintText: widget.hintText ?? UsefulWidgetsLocalizations.of(context)[SearchWidgetMessages.searchHint],
+				prefixIcon: IconButton(
+					icon: Icon(Icons.chevron_left),
+					onPressed: () => close(context),
+				),
+				suffixIcon: IconButton(
+					icon: Icon(Icons.search),
+					onPressed: () => search(context, textEditingController.text)
+				)
+			),
+			controller: textEditingController,
+			style: Theme.of(context).textTheme.headline6,
+			onSubmitted: (value) => search(context, value)
+		);
+	}
+
+	Widget buildBody() {		
+		if (controller.activePage == ActivePage.result) {
+			return FutureWidget<T>(
+				future: controller.futureSearch,
+				awaitWidget: (context) => buildAwaitSearch(context),
+				builder: (context, result) => widget.buildResult(context, result)
+			);
+		} else {
+			return widget.buildSugestion(context);
+		}
+	}
+
+	Widget buildAwaitSearch(BuildContext context) {
+		if (widget.buildAwaitSearch != null) {
+			return widget.buildAwaitSearch(context);
+		}
+
+		return AwaitWidget(UsefulWidgetsLocalizations.of(context)[SearchWidgetMessages.searchingMessage]);
+	}
+
+	void search(BuildContext context, String query) {
+		controller.futureSearch = widget.search(context, query);
+	}
+
+	Future<bool> goBack() async {
+		if (controller.activePage == ActivePage.result) {
+			controller.activePage = ActivePage.sugestion;
+			return false;
+		}
+		return true;
+	}
+
+	void close(BuildContext context) {
+		Navigator.of(context).pop();
+	}
+
+	void listener() {
+		setState(() {});
+	}
+
+	@override
+	void dispose() {
+    	controller.removeListener(listener);
+		super.dispose();
+	}
 }
