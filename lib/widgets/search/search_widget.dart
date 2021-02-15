@@ -44,12 +44,9 @@ class _SearchWidgetState<T> extends State<SearchWidget<T>> {
 
 	@override
 	Widget build(BuildContext context) {
-		return WillPopScope(
-			onWillPop: () => goBack(),
-			child: Scaffold(
-				appBar: buildAppBar(context, buildSearchField()),
-				body: buildBody()
-			)
+		return Scaffold(
+			appBar: buildAppBar(context, buildSearchField()),
+			body: buildBody()
 		);
 	}
 
@@ -111,14 +108,6 @@ class _SearchWidgetState<T> extends State<SearchWidget<T>> {
 
 	void search(BuildContext context, String query) {
 		controller.futureSearch = widget.search(context, query);
-	}
-
-	Future<bool> goBack() async {
-		if (controller.activePage == ActivePage.result) {
-			controller.activePage = ActivePage.sugestion;
-			return false;
-		}
-		return true;
 	}
 
 	void close(BuildContext context) {
