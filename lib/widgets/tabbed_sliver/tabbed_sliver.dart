@@ -5,8 +5,8 @@ class TabbedSliver extends TabbedContainer {
   final List<Widget> headers;
 
   TabbedSliver({
-    @required Map<Widget, Widget> tabs,
-    @required this.headers
+    @required this.headers,
+    @required Map<Widget, Widget> tabs
   }) : super(tabs: tabs) {
     assert(this.headers != null && this.headers.isNotEmpty, 'You need to inform the header widgets');
   }
