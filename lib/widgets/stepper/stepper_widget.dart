@@ -55,13 +55,15 @@ class StepperWidgetState extends State<StepperWidget> {
       return null;
     }
 
-    return RaisedButton(
-      padding: EdgeInsets.all(15),
-      color: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryColor),
-      textColor: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.headline6.color),
+    return ElevatedButton(
       child: (currentStep == widget.steps.length - 1 ? widget.finalizeButton : (widget.steps[currentStep].continueButton != null ? widget.steps[currentStep].continueButton : widget.continueButton)),
+      style: ElevatedButton.styleFrom(
+        primary: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryColor),
+        onPrimary: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.headline6.color),
+        padding: EdgeInsets.all(15),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
       onPressed: () => goToNextStep(context),
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
     );
   }
 

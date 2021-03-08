@@ -25,7 +25,7 @@ class ErrorWidget<T> extends StatelessWidget {
     if (retry != null) {
       widgets.addAll([
         Padding(padding: EdgeInsets.all(10),),
-        RaisedButton(
+        ElevatedButton(
           child: Text(localization[FutureWidgetMessages.retryButton]),
           onPressed: () => retry(context),
         )

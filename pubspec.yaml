@@ -3,6 +3,7 @@ description: Useful widgets to make creating apps easier. Some example widgets a
 version: 1.3.0+1
 author: Ricardo Crescenti <ricardo.crescenti@gmail.com>
 homepage: https://github.com/ricardocrescenti/flutter-useful-widgets
+publish_to: none
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

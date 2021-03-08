@@ -26,24 +26,24 @@ class DefaultSocialButton extends StatelessWidget{
   _buildRoudedButton(BuildContext context) {
     return SizedBox(
       width: 37,
-      child: RaisedButton(
-        color: this.buttonColor,
-        textColor: this.textColor,
+      child: ElevatedButton(
         child: Padding(
           padding: EdgeInsets.only(left: 12),
           child: Icon(this.icon, size: 20, textDirection: TextDirection.rtl,),
         ),
+        style: ElevatedButton.styleFrom(
+          primary: this.buttonColor,
+          onPrimary: this.textColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),),
+        ),
         onPressed: () => this.onPressed(context),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),),
-      )
+        )
     );
   }
 
   _buildRaisedButton(BuildContext context) {
-    return RaisedButton(
-      color: this.buttonColor,
-      textColor: this.textColor,
+    return ElevatedButton(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -51,6 +51,10 @@ class DefaultSocialButton extends StatelessWidget{
           Padding(padding: EdgeInsets.only(left: 10),),
           Text(this.text,)
         ],
+      ),
+      style: ElevatedButton.styleFrom(
+        primary: this.buttonColor,
+        onPrimary: this.textColor,
       ),
       onPressed: () => this.onPressed(context),
     );

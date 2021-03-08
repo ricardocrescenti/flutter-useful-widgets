@@ -121,7 +121,7 @@ class _LoginWidget extends State<LoginWidget> {
               ),
             ),
           ),
-          RaisedButton(
+          ElevatedButton(
             child: Text('Login'),
             onPressed: () => widget.onLoginClick(context, formValue['username'], formValue['password']),
           ),
@@ -129,13 +129,13 @@ class _LoginWidget extends State<LoginWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               (widget.onRegisterClick != null 
-                ? FlatButton(
+                ? TextButton(
                   child: Text(localization[LoginWidgetMessages.register]),
                   onPressed: () => widget.onRegisterClick(context),
                 )
                 : null),
               (widget.onRecoverPasswordClick != null
-                ? FlatButton(
+                ? TextButton(
                   child: Text(localization[LoginWidgetMessages.recoverPassword]),
                   onPressed: () => widget.onRecoverPasswordClick(context, formValue['username']),
                 )

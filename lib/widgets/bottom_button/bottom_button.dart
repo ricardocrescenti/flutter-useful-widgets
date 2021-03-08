@@ -15,13 +15,15 @@ class BottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RaisedButton(
-      padding: EdgeInsets.all(15),
-      color: (color == null ? (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryColor) : color),
-      textColor: (textColor == null ? (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.headline6.color) : textColor),
+    return ElevatedButton(
       child: child,
-      onPressed: onPressed,
-      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.all(15),
+        primary: (color == null ? (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryColor) : color),
+        onPrimary: (textColor == null ? (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.headline6.color) : textColor),
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      ),
+      onPressed: onPressed
     );
   }
 }
