@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class EmptyPage extends StatelessWidget {
-  static EdgeInsets defaultPadding = const EdgeInsets.all(20);
+  static EdgeInsets defaultPadding = const EdgeInsets.all(50);
   static double defaultOpacity = 0.7;
 
   final EdgeInsets padding;
@@ -31,7 +31,7 @@ class EmptyPage extends StatelessWidget {
     childs.add(Padding(
       padding: EdgeInsets.only(
         top: (childs.isNotEmpty ? 20 : 0),
-        bottom: (actions != null && actions.isNotEmpty ? 10 : 0)),
+        bottom: (actions != null && actions.isNotEmpty ? 20 : 0)),
       child: body
     ));
 
@@ -52,6 +52,6 @@ class EmptyPage extends StatelessWidget {
       )
     );
 
-    return (scroll ? SingleChildScrollView(child: child) : child);
+    return Center(child: (scroll ? SingleChildScrollView(child: child) : child));
   }
 }
