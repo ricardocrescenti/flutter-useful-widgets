@@ -7,6 +7,7 @@ import 'active_page_enum.dart';
 
 class SearchWidget<T> extends StatefulWidget {
 	final String hintText;
+	final String initialSearchText;
 	final AppBar Function(BuildContext context, Widget searchField) buildAppBar;
 	final Widget Function(BuildContext context) buildSugestion;
 	final Widget Function(BuildContext context) buildAwaitSearch;
@@ -16,6 +17,7 @@ class SearchWidget<T> extends StatefulWidget {
 
 	SearchWidget({
 		this.hintText,
+		this.initialSearchText,
 		this.buildAppBar,
 		this.buildSugestion,
 		this.buildAwaitSearch,
@@ -30,7 +32,6 @@ class SearchWidget<T> extends StatefulWidget {
 
 class _SearchWidgetState<T> extends State<SearchWidget<T>> {
 	SearchController<T> controller;
-
 	TextEditingController textEditingController = TextEditingController();
 
 	void didChangeDependencies() {
@@ -39,6 +40,11 @@ class _SearchWidgetState<T> extends State<SearchWidget<T>> {
 		if (controller == null) {    
 			controller = widget.controller ?? SearchController<T>();
 			controller.addListener(listener);
+
+			if (widget.initialSearchText?.isNotEmpty ?? false) {
+				textEditingController.text = widget.initialSearchText;
+				controller.futureSearch = widget.search(context, textEditingController.text);
+			}
 		}
 	}
 
@@ -91,7 +97,7 @@ class _SearchWidgetState<T> extends State<SearchWidget<T>> {
 			return FutureWidget<T>(
 				future: controller.futureSearch,
 				awaitWidget: (context) => buildAwaitSearch(context),
-				builder: (context, result) => widget.buildResult(context, result)
+				builder: (context, result) => widget.buildResult(context, controller.result)
 			);
 		} else {
 			return widget.buildSugestion(context);
