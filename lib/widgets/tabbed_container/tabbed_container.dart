@@ -48,16 +48,22 @@ class TabbedContainer extends StatefulWidget {
 }
 
 class _TabbedContainer extends State<TabbedContainer> with TickerProviderStateMixin {
-  //Map<Widget, Widget> tabs;
   TabController tabContoller;
 
   @override
   void initState() {
     super.initState();
 
-    //this.tabs = widget.tabs;
-    this.tabContoller = TabController(length: widget.tabs.length, vsync: this);  
-    this.tabContoller.addListener(_onTabChanged);
+    initTabController();
+  }
+
+  @override
+  void didUpdateWidget(covariant TabbedContainer oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (tabContoller.length != widget.tabs.length) {
+      initTabController();
+    }
   }
 
   @override
@@ -89,6 +95,11 @@ class _TabbedContainer extends State<TabbedContainer> with TickerProviderStateMi
       length: widget.tabs.length,
       child: widget.build(context, widget.tabs, tabBar, tabBarView),
     );
+  }
+
+  void initTabController() {
+    this.tabContoller = TabController(length: widget.tabs.length, vsync: this);  
+    this.tabContoller.addListener(_onTabChanged);
   }
 
   void _onTabChanged() {
