@@ -1,57 +1,61 @@
 import 'package:flutter/material.dart';
 
 class EmptyPage extends StatelessWidget {
-  static EdgeInsets defaultPadding = const EdgeInsets.all(50);
-  static double defaultOpacity = 0.7;
 
-  final EdgeInsets padding;
-  final double opacity;
-  final Widget title;
-  final Widget body;
-  final List<Widget> actions;
-  final bool scroll;
+	static EdgeInsets defaultPadding = const EdgeInsets.all(50);
+	static double defaultOpacity = 0.7;
 
-  EmptyPage({
-    this.padding,
-    this.opacity,
-    this.title,
-    @required this.body,
-    this.actions,
-    this.scroll = true,
-  });
+	final EdgeInsets? padding;
+	final double? opacity;
+	final Widget? title;
+	final Widget body;
+	final List<Widget>? actions;
+	final bool scroll;
 
-  @override
-  Widget build(BuildContext context) {
-    List<Widget> childs = [];
+	const EmptyPage({
+		Key? key,
+		this.padding,
+		this.opacity,
+		this.title,
+		required this.body,
+		this.actions,
+		this.scroll = true,
+	}) : super(key: key);
 
-    if (title != null) {
-      childs.add(title);
-    }
+	@override
+	Widget build(BuildContext context) {
 
-    childs.add(Padding(
-      padding: EdgeInsets.only(
-        top: (childs.isNotEmpty ? 20 : 0),
-        bottom: (actions != null && actions.isNotEmpty ? 20 : 0)),
-      child: body
-    ));
+		List<Widget> childs = [];
 
-    if (actions != null) {
-      childs.addAll(actions);
-    }
+		if (title != null) {
+			childs.add(title!);
+		}
 
-    Widget child = Opacity(
-      opacity: this.opacity ?? EmptyPage.defaultOpacity,
-      child: Padding(
-        padding: this.padding ?? EmptyPage.defaultPadding, 
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: childs,
-          )
-        )
-      )
-    );
+		childs.add(Padding(
+			padding: EdgeInsets.only(
+				top: (childs.isNotEmpty ? 20 : 0),
+				bottom: ((actions?.isNotEmpty ?? false) ? 20 : 0)),
+			child: body
+		));
 
-    return Center(child: (scroll ? SingleChildScrollView(child: child) : child));
-  }
+		if (actions != null) {
+			childs.addAll(actions!);
+		}
+
+		Widget child = Opacity(
+			opacity: (opacity ?? EmptyPage.defaultOpacity),
+			child: Padding(
+				padding: (padding ?? EmptyPage.defaultPadding), 
+				child: Center(
+					child: Column(
+						mainAxisAlignment: MainAxisAlignment.center,
+						children: childs,
+					)
+				)
+			)
+		);
+
+		return Center(child: (scroll ? SingleChildScrollView(child: child) : child));
+
+	}
 }

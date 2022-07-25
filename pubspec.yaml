@@ -1,12 +1,11 @@
 name: useful_widgets
 description: Useful widgets to make creating apps easier. Some example widgets are FutureWidget, RefreshWidget, SearchWidget.
 version: 1.3.0+1
-author: Ricardo Crescenti <ricardo.crescenti@gmail.com>
 homepage: https://github.com/ricardocrescenti/flutter-useful-widgets
 publish_to: none
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -15,20 +14,20 @@ dependencies:
     sdk: flutter
   flutter_cupertino_localizations: ^1.0.1
 
-  simple_localization: ^1.2.1  
+  simple_localization: ^2.0.0  
   simple_form:
-    # path: 'D:\Projetos\CrescentiApps\Packages\Flutter\flutter-simple-form'
-    git: 
-      url: https://github.com/ricardocrescenti/flutter-simple-form.git
-      ref: master
+    path: '../flutter-simple-form'
+    # git: 
+    #   url: https://github.com/ricardocrescenti/flutter-simple-form.git
+    #   ref: master
 
-  cached_network_image: ^2.5.0
-  font_awesome_flutter: ^8.5.0
+  cached_network_image: ^3.2.1
+  font_awesome_flutter: ^10.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.8.0
+  flutter_lints: ^2.0.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

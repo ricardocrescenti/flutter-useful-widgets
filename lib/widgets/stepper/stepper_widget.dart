@@ -1,113 +1,120 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:useful_widgets/useful_widgets.dart';
-import 'package:useful_widgets/widgets/stepper/inherited_stepper.dart';
 
 class StepperWidget extends StatefulWidget {
-  final bool showStepTitle;
-  final bool centerTitle;
-  final Widget continueButton;
-  final Widget finalizeButton;
-  final Future<bool> Function(BuildContext context) onWillPop;
-  final Future<void> Function(BuildContext context) onFinalize;
-  final List<StepWidget> steps;
+	final bool showStepTitle;
+	final bool centerTitle;
+	final Widget continueButton;
+	final Widget finalizeButton;
+	final Future<bool> Function(BuildContext context)? onWillPop;
+	final Future<void> Function(BuildContext context)? onFinalize;
+	final List<StepWidget> steps;
 
-  StepperWidget({
-    this.showStepTitle = false,
-    this.centerTitle = false,
-    this.continueButton = const Text('CONTINUE'),
-    this.finalizeButton = const Text('FINALIZE'),
-    this.onWillPop,
-    this.onFinalize,
-    @required this.steps,
-  });
-  
-  @override
-  StepperWidgetState createState() => StepperWidgetState();
+	const StepperWidget({
+		Key? key,
+		this.showStepTitle = false,
+		this.centerTitle = false,
+		this.continueButton = const Text('CONTINUE'),
+		this.finalizeButton = const Text('FINALIZE'),
+		this.onWillPop,
+		this.onFinalize,
+		required this.steps,
+	}): super(key: key);
+	
+	@override
+	StepperWidgetState createState() => StepperWidgetState();
+
 }
 
 class StepperWidgetState extends State<StepperWidget> {
-  int currentStep = 0;
 
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () => backToPreviousStep(context),
-      child: InheritedStepper(
-        stepper: this,
-        child: Scaffold(
-          appBar: buildAppBar(),
-          body: widget.steps[currentStep],
-          bottomNavigationBar: buildContinueButton(context),
-        ),
-      ),
-    );
-  }
+	int currentStep = 0;
 
-  buildAppBar() {
-    if (widget.showStepTitle) {
-      return widget.steps[currentStep].appBar;
-    }
-    return null;
-  }
+	@override
+	Widget build(BuildContext context) {
+		return WillPopScope(
+			onWillPop: () => backToPreviousStep(context),
+			child: InheritedStepper(
+				stepper: this,
+				child: Scaffold(
+					appBar: buildAppBar(),
+					body: widget.steps[currentStep],
+					bottomNavigationBar: buildContinueButton(context),
+				),
+			),
+		);
+	}
 
-  buildContinueButton(BuildContext context) {
-    if (!widget.steps[currentStep].showContinueButton) {
-      return null;
-    }
+	buildAppBar() {
+		if (widget.showStepTitle) {
+			return widget.steps[currentStep].appBar;
+		}
+		return null;
+	}
 
-    return ElevatedButton(
-      child: (currentStep == widget.steps.length - 1 ? widget.finalizeButton : (widget.steps[currentStep].continueButton != null ? widget.steps[currentStep].continueButton : widget.continueButton)),
-      style: ElevatedButton.styleFrom(
-        primary: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryColor),
-        onPrimary: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.headline6.color),
-        padding: EdgeInsets.all(15),
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-      ),
-      onPressed: () => goToNextStep(context),
-    );
-  }
+	buildContinueButton(BuildContext context) {
+		if (!widget.steps[currentStep].showContinueButton) {
+			return null;
+		}
 
-  Future<bool> backToPreviousStep(BuildContext context) async {
-    bool canCancel = true;
-    if (widget.steps[currentStep].onCancel != null) {
-      canCancel = await widget.steps[currentStep].onCancel(context);
-    }
+		return ElevatedButton(
+			style: ElevatedButton.styleFrom(
+				primary: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryColor),
+				onPrimary: (Theme.of(context).brightness == Brightness.dark ? null : Theme.of(context).primaryTextTheme.headline6!.color),
+				padding: const EdgeInsets.all(15),
+				tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+			),
+			onPressed: () => goToNextStep(context),
+			child: (currentStep == widget.steps.length - 1 ? widget.finalizeButton : (widget.steps[currentStep].continueButton ?? widget.continueButton)),
+		);
+	}
 
-    if (currentStep == 0 && widget.onWillPop != null) {
-      canCancel = await widget.onWillPop(context);
-    }
+	Future<bool> backToPreviousStep(BuildContext context) async {
+		bool canCancel = true;
+		if (widget.steps[currentStep].onCancel != null) {
+			canCancel = await widget.steps[currentStep].onCancel!(context);
+		}
 
-    if (canCancel) {
-      if (currentStep > 0) {
-        setState(() {
-          currentStep--;
-        });
-      } else {
-        return true;
-      }
-    }
-    return false;
-  }
+		if (currentStep == 0 && widget.onWillPop != null) {
+			canCancel = await widget.onWillPop!(context);
+		}
 
-  goToNextStep(BuildContext context) async {
-    bool canContinue = true;
-    if (widget.steps[currentStep].onContinue != null) {
-      canContinue = await widget.steps[currentStep].onContinue(context);
-    }
+		if (canCancel) {
+			if (currentStep > 0) {
+				setState(() {
+					currentStep--;
+				});
+			} else {
+				return true;
+			}
+		}
+		return false;
 
-    if (canContinue) {
-      if (currentStep < widget.steps.length - 1) {
-        setState(() {
-          currentStep++;
-        });
-      }
-      else {
-        if (widget.onFinalize != null) {
-          await widget.onFinalize(context);
-        } else {
-          Navigator.of(context).pop();
-        }
-      }
-    }
-  }
+	}
+
+	goToNextStep(BuildContext context) async {
+
+		bool canContinue = true;
+		if (widget.steps[currentStep].onContinue != null) {
+			canContinue = await widget.steps[currentStep].onContinue!(context);
+		}
+
+		if (canContinue) {
+			if (currentStep < widget.steps.length - 1) {
+				setState(() {
+					currentStep++;
+				});
+			}
+			else {
+				if (widget.onFinalize != null) {
+					await widget.onFinalize!(context);
+				} else {
+					Navigator.of(context).pop();
+				}
+			}
+		}
+
+	}
 }

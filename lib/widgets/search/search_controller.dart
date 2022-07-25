@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:useful_widgets/useful_widgets.dart';
 
 class SearchController<T> extends ChangeNotifier {
-	T _result;
-	T get result => _result;
-	set result(T value) {
+
+	T? _result;
+	T? get result => _result;
+	set result(T? value) {
 		_result = value;
 		notifyListeners();
 	}
@@ -16,9 +17,9 @@ class SearchController<T> extends ChangeNotifier {
 		notifyListeners();
 	}
 
-	Future<T> _futureSearch;
-	Future<T> get futureSearch => _futureSearch;
-	set futureSearch(Future<T> value) {
+	Future<T>? _futureSearch;
+	Future<T>? get futureSearch => _futureSearch;
+	void search(Future<T> value) {
 		_futureSearch = value.then((value) {
 			_result = value;
 			return value;
@@ -29,4 +30,5 @@ class SearchController<T> extends ChangeNotifier {
 	void forceNotifyListeners() {
 		notifyListeners();
 	}
+
 }

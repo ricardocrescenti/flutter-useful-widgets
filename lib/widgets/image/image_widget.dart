@@ -4,21 +4,23 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class ImageWidget extends StatelessWidget {
-	final dynamic image;
-	final Widget emptyImage;
-	final BoxFit boxFit;
-	final BorderRadius borderRadius;
-	final BoxConstraints constraints;
-	final EdgeInsetsGeometry padding;
 
-	ImageWidget({
-		@required this.image,
+	final dynamic image;
+	final Widget? emptyImage;
+	final BoxFit boxFit;
+	final BorderRadius? borderRadius;
+	final BoxConstraints? constraints;
+	final EdgeInsetsGeometry? padding;
+
+	const ImageWidget({
+		Key? key,
+		required this.image,
 		this.emptyImage,
 		this.boxFit = BoxFit.contain,
 		this.borderRadius,
 		this.constraints,
 		this.padding
-	});
+	}): super(key: key);
 
 	@override
 	Widget build(BuildContext context) {
@@ -36,25 +38,27 @@ class ImageWidget extends StatelessWidget {
 
 		if (borderRadius != null) {
 			child = ClipPath(
-				clipper: ShapeBorderClipper(
+				clipper: (borderRadius != null ? ShapeBorderClipper(
 					shape: RoundedRectangleBorder(
-						borderRadius: borderRadius //BorderRadius.circular(5)
+						borderRadius: borderRadius! //BorderRadius.circular(5)
 					)
-				),
+				) : null),
 				child: child
 			);
 		}
 
 		return Container(
-			constraints: this.constraints,
-			padding: this.padding,
+			constraints: constraints,
+			padding: padding,
 			child: child
 		);
+
 	}
 
 	_buildFutureImage() {
+
 		return FutureBuilder(
-			future: this.image,
+			future: image,
 			builder: (context, snapshot) {
 
 				if (snapshot.connectionState == ConnectionState.waiting) {
@@ -68,19 +72,20 @@ class ImageWidget extends StatelessWidget {
 			},
 
 		);
+
 	}
 
 	_buildAwaitWidget(BuildContext context) {
-		return Container(
-			child: Center(
-				child: CircularProgressIndicator(
-				)
+
+		return const Center(
+			child: CircularProgressIndicator(
 			)
 		);
+
 	}
 
 	_buildErrorWidget(BuildContext context) {
-		return Icon(Icons.error);
+		return const Icon(Icons.error);
 	}
 
 	_buildImage(dynamic image) {
